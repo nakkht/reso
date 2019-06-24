@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Reso</string>
+
+    <string name="app_name" translatable="false">Reso</string>
+
 </resources>

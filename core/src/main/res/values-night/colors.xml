@@ -4,13 +4,7 @@
     <color name="primary">#795548</color>
     <color name="primary_light">#D7CCC8</color>
     <color name="primary_dark">#5D4037</color>
-    <color name="accent">#707070</color>
+    <color name="accent">#5D4037</color>
     <color name="accent_dark">#131111</color>
-
-    <color name="text_dark">#212121</color>
-    <color name="text_light">#B9B9B9</color>
-
-    <color name="background_light">#ECECEC</color>
-    <color name="background_dark">#353535</color>
 
 </resources>
