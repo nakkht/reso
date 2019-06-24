@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dev-reso.iml" filepath="$PROJECT_DIR$/dev-reso.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reso/reso-reso.iml" filepath="$PROJECT_DIR$/reso/reso-reso.iml" />
+    </modules>
+  </component>
+</project>
