@@ -2,4 +2,6 @@
 
     <string name="app_name" translatable="false">Reso</string>
 
+    <string name="hardware_information">Hardware information</string>
+
 </resources>
