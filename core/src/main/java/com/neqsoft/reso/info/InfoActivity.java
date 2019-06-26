@@ -3,6 +3,7 @@ package com.neqsoft.reso.info;
 import android.os.Bundle;
 
 import com.neqsoft.reso.R;
+import com.neqsoft.reso.device.DeviceViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static androidx.lifecycle.ViewModelProviders.of;
+
 public class InfoActivity extends AppCompatActivity {
+
+  private DeviceViewModel deviceViewModel;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,6 +25,7 @@ public class InfoActivity extends AppCompatActivity {
     setContentView(R.layout.activity_info);
     setSupportActionBar(findViewById(R.id.toolbar));
     setuRecyclerview();
+    deviceViewModel = of(this, new DeviceViewModel.Factory(getApplicationContext())).get(DeviceViewModel.class);
   }
 
   private void setuRecyclerview() {
@@ -33,7 +39,7 @@ public class InfoActivity extends AppCompatActivity {
     List<String> infoTypeTitles = new ArrayList<>();
     InfoType[] infoTypes = InfoType.values();
     for (InfoType infoType : infoTypes) {
-      if (infoType == InfoType.HARDWARE) {
+      if (infoType == InfoType.DEVICE) {
         infoTypeTitles.add(getString(R.string.hardware_information));
       }
     }
