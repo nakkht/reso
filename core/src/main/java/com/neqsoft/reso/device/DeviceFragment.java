@@ -49,10 +49,6 @@ public class DeviceFragment extends Fragment {
 
   private void expand() {
     arrowIv.animate().rotation(180);
-    bottomGroup.animate()
-        .translationY(bottomGroup.getHeight())
-        .alpha(1.0f)
-        .setDuration(300);
     bottomGroup.setVisibility(VISIBLE);
   }
 
