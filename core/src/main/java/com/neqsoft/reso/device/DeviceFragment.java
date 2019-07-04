@@ -20,7 +20,7 @@ import static androidx.lifecycle.ViewModelProviders.of;
 
 public class DeviceFragment extends Fragment {
 
-  private TextView deviceNameTv, titleTv;
+  private TextView deviceNameTv, screenResolutionTv;
   private AppCompatImageView arrowIv;
   private boolean isExpanded = false;
   private Group bottomGroup;
@@ -39,14 +39,15 @@ public class DeviceFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_device, container, false);
     bind(view);
-    deviceViewModel.getDeviceInfo().observe(this, this::setupDevice);
+    deviceViewModel.getDeviceInfo(getActivity()).observe(this, this::setupDevice);
     return view;
   }
 
   private void bind(View view) {
-    titleTv = view.findViewById(R.id.titleTv);
+    TextView titleTv = view.findViewById(R.id.titleTv);
     titleTv.setText(R.string.hardware_information);
-    deviceNameTv = view.findViewById(R.id.deviceNameTv).findViewById(R.id.infoTv);
+    screenResolutionTv = view.findViewById(R.id.screenResolutionLayout).findViewById(R.id.infoTv);
+    deviceNameTv = view.findViewById(R.id.deviceNameLayout).findViewById(R.id.infoTv);
     arrowIv = view.findViewById(R.id.arrowIv);
     view.findViewById(R.id.topGroup).setOnClickListener(v -> changeState());
     bottomGroup = view.findViewById(R.id.bottomGroup);
@@ -72,5 +73,6 @@ public class DeviceFragment extends Fragment {
 
   private void setupDevice(Device device) {
     deviceNameTv.setText(device.getName());
+    screenResolutionTv.setText(device.getScreenResolution().toString());
   }
 }

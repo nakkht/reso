@@ -2,6 +2,9 @@ package com.neqsoft.reso.device;
 
 import androidx.annotation.Nullable;
 
+import static java.lang.String.format;
+import static java.util.Locale.getDefault;
+
 public class Device {
 
   @Nullable
@@ -20,16 +23,12 @@ public class Device {
     this.name = name;
   }
 
-  public int getScreenWidth() {
-    return screenWidth;
-  }
-
   public void setScreenWidth(int screenWidth) {
     this.screenWidth = screenWidth;
   }
 
-  public int getScreenHeight() {
-    return screenHeight;
+  public String getScreenResolution() {
+    return format(getDefault(), "%dx%d", screenWidth, screenHeight);
   }
 
   public void setScreenHeight(int screenHeight) {
