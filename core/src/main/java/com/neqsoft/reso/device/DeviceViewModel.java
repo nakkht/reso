@@ -2,12 +2,12 @@ package com.neqsoft.reso.device;
 
 import android.content.Context;
 
-import com.neqsoft.reso.utils.misc.Observable;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,21 +19,21 @@ public class DeviceViewModel extends ViewModel {
 
   private final Context applicationContext;
   private final ExecutorService backgroundExecutor;
-  private final Observable<Device> deviceObservable;
+  private final MutableLiveData<Device> deviceData;
 
   public DeviceViewModel(final Context applicationContext) {
     this.applicationContext = applicationContext;
     backgroundExecutor = Executors.newCachedThreadPool();
-    deviceObservable = new Observable<>();
+    deviceData = new MutableLiveData<>();
   }
 
-  public Observable<Device> getDeviceInfo() {
+  public LiveData<Device> getDeviceInfo() {
     backgroundExecutor.execute(() -> {
       Device device = new Device();
       device.setName(getDeviceName());
-      deviceObservable.set(device);
+      deviceData.postValue(device);
     });
-    return deviceObservable;
+    return deviceData;
   }
 
   protected String getDeviceName() {

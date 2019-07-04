@@ -13,18 +13,10 @@ import static androidx.lifecycle.ViewModelProviders.of;
 
 public class InfoActivity extends AppCompatActivity {
 
-  private DeviceViewModel deviceViewModel;
-
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_info);
     setSupportActionBar(findViewById(R.id.toolbar));
-    deviceViewModel = of(this, new DeviceViewModel.Factory(getApplicationContext())).get(DeviceViewModel.class);
-    deviceViewModel.getDeviceInfo().observe(this::setupDevice);
-  }
-
-  private void setupDevice(@Nullable Device device) {
-
   }
 }
