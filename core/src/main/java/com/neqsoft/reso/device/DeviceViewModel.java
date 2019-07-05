@@ -1,6 +1,5 @@
 package com.neqsoft.reso.device;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -9,7 +8,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -32,9 +30,9 @@ public class DeviceViewModel extends ViewModel {
     deviceData = new MutableLiveData<>();
   }
 
-  public LiveData<Device> getDeviceInfo(@Nullable final Activity activity) {
+  public LiveData<Device> getDeviceInfo(@NonNull final Display display) {
     backgroundExecutor.execute(() -> {
-      Device device = getDeviceData(activity);
+      Device device = getDeviceData(display);
       deviceData.postValue(device);
     });
     return deviceData;
@@ -44,19 +42,23 @@ public class DeviceViewModel extends ViewModel {
     return MANUFACTURER + " " + MODEL + " " + RELEASE;
   }
 
-  private Device getDeviceData(@Nullable final Activity activity) {
+  private Device getDeviceData(@NonNull final Display display) {
     Device device = new Device();
     device.setName(getDeviceName());
-    if (activity != null) {
-      Pair<Integer, Integer> resolution = getScreenResolution(activity);
-      device.setScreenWidth(resolution.first != null ? resolution.first : 0);
-      device.setScreenHeight(resolution.second != null ? resolution.second : 0);
-    }
+    Pair<Integer, Integer> resolution = getScreenResolution(display);
+    device.setScreenWidth(resolution.first != null ? resolution.first : 0);
+    device.setScreenHeight(resolution.second != null ? resolution.second : 0);
+    device.setDensity(getDensity(display));
     return device;
   }
 
-  private Pair<Integer, Integer> getScreenResolution(final Activity activity) {
-    Display display = activity.getWindowManager().getDefaultDisplay();
+  private int getDensity(@NonNull final Display display) {
+    DisplayMetrics realMetrics = new DisplayMetrics();
+    display.getMetrics(realMetrics);
+    return realMetrics.densityDpi;
+  }
+
+  private Pair<Integer, Integer> getScreenResolution(@NonNull final Display display) {
     DisplayMetrics realMetrics = new DisplayMetrics();
     display.getRealMetrics(realMetrics);
     return new Pair<>(realMetrics.widthPixels, realMetrics.heightPixels);
