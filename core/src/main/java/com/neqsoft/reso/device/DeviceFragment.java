@@ -25,7 +25,7 @@ import static java.util.Locale.getDefault;
 
 public class DeviceFragment extends Fragment {
 
-  private TextView deviceNameTv, screenResolutionTv, densityTv;
+  private TextView deviceNameTv, screenResolutionTv, densityTv, aspectRatioTv;
   private AppCompatImageView arrowIv;
   private boolean isExpanded = false;
   private Group bottomGroup;
@@ -63,9 +63,17 @@ public class DeviceFragment extends Fragment {
     setupDeviceName(view);
     setupScreenResolution(view);
     setupDensity(view);
+    setupAspectRatio(view);
     arrowIv = view.findViewById(R.id.arrowIv);
     view.findViewById(R.id.topGroup).setOnClickListener(v -> changeState());
     bottomGroup = view.findViewById(R.id.bottomGroup);
+  }
+
+  private void setupAspectRatio(final View view) {
+    ConstraintLayout densityLayout = view.findViewById(R.id.aspectRatioLayout);
+    aspectRatioTv = densityLayout.findViewById(R.id.infoTv);
+    TextView titleTv = densityLayout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.aspect_ratio);
   }
 
   private void setupDensity(final View view) {
@@ -111,5 +119,6 @@ public class DeviceFragment extends Fragment {
     deviceNameTv.setText(device.getName());
     screenResolutionTv.setText(device.getScreenResolution());
     densityTv.setText(format(getDefault(), "%ddpi", device.getDensity()));
+    aspectRatioTv.setText(format(getDefault(), "%f", device.getAspectRatio()));
   }
 }

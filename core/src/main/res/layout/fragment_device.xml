@@ -55,6 +55,14 @@
             android:layout_margin="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@id/screenResolutionLayout"/>
 
+        <include
+            android:id="@+id/aspectRatioLayout"
+            layout="@layout/info_item_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintTop_toBottomOf="@id/densityLayout"/>
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/topGroup"
             android:layout_width="match_parent"
@@ -68,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:visibility="gone"
-            app:constraint_referenced_ids="deviceNameLayout, screenResolutionLayout, densityLayout"
+            app:constraint_referenced_ids="deviceNameLayout, screenResolutionLayout, densityLayout, aspectRatioLayout"
             app:layout_constraintBottom_toBottomOf="@id/deviceNameLayout"
             app:layout_constraintTop_toTopOf="@id/deviceNameLayout"
             tools:visibility="visible"/>

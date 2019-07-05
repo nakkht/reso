@@ -6,5 +6,6 @@
     <string name="device_name">Device name</string>
     <string name="screen_resolution">Screen resolution</string>
     <string name="density">Density</string>
+    <string name="aspect_ratio">Aspect ratio</string>
 
 </resources>

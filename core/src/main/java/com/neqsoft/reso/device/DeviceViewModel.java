@@ -49,7 +49,15 @@ public class DeviceViewModel extends ViewModel {
     device.setScreenWidth(resolution.first != null ? resolution.first : 0);
     device.setScreenHeight(resolution.second != null ? resolution.second : 0);
     device.setDensity(getDensity(display));
+    device.setAspectRatio(getAspectRatio(display));
     return device;
+  }
+
+  private float getAspectRatio(final Display display) {
+    DisplayMetrics realMetrics = new DisplayMetrics();
+    display.getRealMetrics(realMetrics);
+    return (float) realMetrics.widthPixels / (float) realMetrics.heightPixels;
+
   }
 
   private int getDensity(@NonNull final Display display) {
