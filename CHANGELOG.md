@@ -1,0 +1,12 @@
+# Changelog
+All notable changes to reso project will be documented in this file.
+
+
+### v0.1.0
+
+#### Added
+- Displaying hardware information:
+  - Device name
+  - Screen resolution
+  - Density
+  - Aspect reatio
