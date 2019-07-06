@@ -39,4 +39,9 @@
         <item name="android:textSize">@dimen/text_normal</item>
     </style>
 
+    <style name="Text.Normal.Bold" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:fontFamily">@font/opensans_semi_bold</item>
+    </style>
+
 </resources>

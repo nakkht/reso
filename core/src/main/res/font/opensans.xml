@@ -13,7 +13,7 @@
         app:fontWeight="400"/>
 
     <font
-        app:font="@font/opensans_bold"
+        app:font="@font/opensans_semi_bold"
         app:fontStyle="normal"
         app:fontWeight="700"/>
 
