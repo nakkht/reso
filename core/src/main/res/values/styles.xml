@@ -11,6 +11,8 @@
 
         <item name="android:editTextStyle">@style/Text.Normal</item>
         <item name="android:textViewStyle">@style/Text.Normal</item>
+
+        <item name="android:fontFamily">@font/opensans</item>
     </style>
 
     <style name="EditText.Large" parent="@android:style/Widget.EditText">
