@@ -9,4 +9,9 @@ All notable changes to reso project will be documented in this file.
   - Device name
   - Screen resolution
   - Density
-  - Aspect reatio
+  - Aspect ratio
+
+- Displaying OS information:
+  - OS version number
+  - SDK version
+  - Code name 

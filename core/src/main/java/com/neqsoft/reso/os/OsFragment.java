@@ -18,11 +18,13 @@ import androidx.fragment.app.Fragment;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static androidx.lifecycle.ViewModelProviders.of;
+import static java.lang.String.format;
+import static java.util.Locale.getDefault;
 
 public class OsFragment extends Fragment {
 
   private OsViewModel osViewModel;
-  private TextView osVersionTv;
+  private TextView osVersionTv, sdkVersionTv, codeNameTv;
   private AppCompatImageView arrowIv;
   private boolean isExpanded = false;
   private Group bottomGroup;
@@ -49,19 +51,36 @@ public class OsFragment extends Fragment {
     view.findViewById(R.id.topGroup).setOnClickListener(v -> changeState());
     bottomGroup = view.findViewById(R.id.bottomGroup);
     setupOsVersion(view);
+    setupSdkVersion(view);
+    setupCodeName(view);
+  }
+
+  private void setupCodeName(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.codeNameLayout);
+    codeNameTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.code_name);
   }
 
   private void setupOsVersion(final View view) {
-    ConstraintLayout osVersionLayout = view.findViewById(R.id.osVersionLayout);
-    osVersionTv = osVersionLayout.findViewById(R.id.infoTv);
-    TextView titleTv = osVersionLayout.findViewById(R.id.titleTv);
+    ConstraintLayout layout = view.findViewById(R.id.osVersionLayout);
+    osVersionTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
     titleTv.setText(R.string.os_version);
+  }
+
+  private void setupSdkVersion(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.sdkVersionLayout);
+    sdkVersionTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.sdk_version);
   }
 
   private void display(final Os os) {
     osVersionTv.setText(os.getVersion());
+    sdkVersionTv.setText(format(getDefault(), "%d", os.getSdkVersion()));
+    codeNameTv.setText(os.getOsVersion().getValue());
   }
-
 
   private void changeState() {
     if (isExpanded)

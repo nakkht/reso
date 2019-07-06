@@ -68,31 +68,31 @@ public class DeviceFragment extends Fragment {
   }
 
   private void setupAspectRatio(final View view) {
-    ConstraintLayout densityLayout = view.findViewById(R.id.aspectRatioLayout);
-    aspectRatioTv = densityLayout.findViewById(R.id.infoTv);
-    TextView titleTv = densityLayout.findViewById(R.id.titleTv);
+    ConstraintLayout layout = view.findViewById(R.id.aspectRatioLayout);
+    aspectRatioTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
     titleTv.setText(R.string.aspect_ratio);
   }
 
   private void setupDensity(final View view) {
-    ConstraintLayout densityLayout = view.findViewById(R.id.densityLayout);
-    densityTv = densityLayout.findViewById(R.id.infoTv);
-    TextView titleTv = densityLayout.findViewById(R.id.titleTv);
+    ConstraintLayout layout = view.findViewById(R.id.densityLayout);
+    densityTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
     titleTv.setText(R.string.density);
   }
 
   private void setupScreenResolution(final View view) {
-    ConstraintLayout screenResolutionLayout = view.findViewById(R.id.screenResolutionLayout);
-    screenResolutionTv = screenResolutionLayout.findViewById(R.id.infoTv);
-    TextView titleTv = screenResolutionLayout.findViewById(R.id.titleTv);
+    ConstraintLayout layout = view.findViewById(R.id.screenResolutionLayout);
+    screenResolutionTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
     titleTv.setText(R.string.screen_resolution);
   }
 
   private void setupDeviceName(final View view) {
-    ConstraintLayout deviceNameLayout = view.findViewById(R.id.deviceNameLayout);
-    TextView titleTv = deviceNameLayout.findViewById(R.id.titleTv);
+    ConstraintLayout layout = view.findViewById(R.id.deviceNameLayout);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
     titleTv.setText(R.string.device_name);
-    deviceNameTv = deviceNameLayout.findViewById(R.id.infoTv);
+    deviceNameTv = layout.findViewById(R.id.infoTv);
   }
 
   private void changeState() {

@@ -9,5 +9,7 @@
     <string name="aspect_ratio">Aspect ratio</string>
     <string name="os_information">OS information</string>
     <string name="os_version">OS version</string>
+    <string name="sdk_version">SDK version</string>
+    <string name="code_name">Code name</string>
 
 </resources>
