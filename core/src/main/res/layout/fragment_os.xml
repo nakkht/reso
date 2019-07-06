@@ -55,6 +55,30 @@
             android:layout_margin="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@id/sdkVersionLayout"/>
 
+        <include
+            android:id="@+id/kernelVersionLayout"
+            layout="@layout/info_item_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintTop_toBottomOf="@id/codeNameLayout"/>
+
+        <include
+            android:id="@+id/kernelNameLayout"
+            layout="@layout/info_item_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintTop_toBottomOf="@id/kernelVersionLayout"/>
+
+        <include
+            android:id="@+id/architectureLayout"
+            layout="@layout/info_item_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintTop_toBottomOf="@id/kernelNameLayout"/>
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/topGroup"
             android:layout_width="match_parent"
@@ -68,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:visibility="gone"
-            app:constraint_referenced_ids="osVersionLayout, sdkVersionLayout, codeNameLayout"
+            app:constraint_referenced_ids="osVersionLayout, sdkVersionLayout, codeNameLayout, kernelVersionLayout, kernelNameLayout, architectureLayout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/osVersionLayout"
             tools:visibility="visible"/>

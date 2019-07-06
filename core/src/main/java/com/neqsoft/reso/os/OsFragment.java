@@ -24,7 +24,7 @@ import static java.util.Locale.getDefault;
 public class OsFragment extends Fragment {
 
   private OsViewModel osViewModel;
-  private TextView osVersionTv, sdkVersionTv, codeNameTv;
+  private TextView osVersionTv, sdkVersionTv, codeNameTv, architectureTv, kernelNameTv, kernelVersionTv;
   private AppCompatImageView arrowIv;
   private boolean isExpanded = false;
   private Group bottomGroup;
@@ -53,6 +53,30 @@ public class OsFragment extends Fragment {
     setupOsVersion(view);
     setupSdkVersion(view);
     setupCodeName(view);
+    setupKernelVersion(view);
+    setupKernelName(view);
+    setupArchitecture(view);
+  }
+
+  private void setupKernelVersion(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.kernelVersionLayout);
+    kernelVersionTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.kernel_version);
+  }
+
+  private void setupKernelName(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.kernelNameLayout);
+    kernelNameTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.kernel);
+  }
+
+  private void setupArchitecture(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.architectureLayout);
+    architectureTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.architecture);
   }
 
   private void setupCodeName(final View view) {
@@ -80,6 +104,9 @@ public class OsFragment extends Fragment {
     osVersionTv.setText(os.getVersion());
     sdkVersionTv.setText(format(getDefault(), "%d", os.getSdkVersion()));
     codeNameTv.setText(os.getOsVersion().getValue());
+    kernelNameTv.setText(os.getKernelName());
+    kernelVersionTv.setText(os.getKernelVersion());
+    architectureTv.setText(os.getArchitecture());
   }
 
   private void changeState() {

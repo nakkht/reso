@@ -11,5 +11,8 @@
     <string name="os_version">OS version</string>
     <string name="sdk_version">SDK version</string>
     <string name="code_name">Code name</string>
+    <string name="architecture">Architecture</string>
+    <string name="kernel">Kernel</string>
+    <string name="kernel_version">Kernel version</string>
 
 </resources>

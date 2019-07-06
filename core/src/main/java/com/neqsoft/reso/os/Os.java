@@ -4,6 +4,9 @@ public class Os {
 
   private int sdkVersion;
   private String version;
+  private String kernelVersion;
+  private String kernelName;
+  private String architecture;
 
   public void setSdkVersion(int sdkVersion) {
     this.sdkVersion = sdkVersion;
@@ -23,5 +26,29 @@ public class Os {
 
   public OsVersion getOsVersion() {
     return OsVersion.get(sdkVersion);
+  }
+
+  public String getKernelVersion() {
+    return kernelVersion;
+  }
+
+  public void setKernelVersion(String kernelVersion) {
+    this.kernelVersion = kernelVersion;
+  }
+
+  public String getKernelName() {
+    return kernelName;
+  }
+
+  public void setKernelName(String kernelName) {
+    this.kernelName = kernelName;
+  }
+
+  public String getArchitecture() {
+    return architecture;
+  }
+
+  public void setArchitecture(String architecture) {
+    this.architecture = architecture;
   }
 }
