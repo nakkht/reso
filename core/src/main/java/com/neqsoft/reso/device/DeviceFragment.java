@@ -43,9 +43,7 @@ public class DeviceFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (getActivity() != null) {
-      deviceViewModel = of(this, new DeviceViewModel.Factory(getActivity().getApplicationContext())).get(DeviceViewModel.class);
-    }
+    deviceViewModel = of(this).get(DeviceViewModel.class);
   }
 
   @Nullable
@@ -53,20 +51,20 @@ public class DeviceFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_device, container, false);
     bind(view);
-    deviceViewModel.getDeviceInfo(display).observe(this, this::setupDevice);
+    deviceViewModel.getDeviceInfo(display).observe(this, this::display);
     return view;
   }
 
   private void bind(final View view) {
     TextView titleTv = view.findViewById(R.id.titleTv);
     titleTv.setText(R.string.hardware_information);
+    bottomGroup = view.findViewById(R.id.bottomGroup);
+    arrowIv = view.findViewById(R.id.arrowIv);
+    view.findViewById(R.id.topGroup).setOnClickListener(v -> changeState());
     setupDeviceName(view);
     setupScreenResolution(view);
     setupDensity(view);
     setupAspectRatio(view);
-    arrowIv = view.findViewById(R.id.arrowIv);
-    view.findViewById(R.id.topGroup).setOnClickListener(v -> changeState());
-    bottomGroup = view.findViewById(R.id.bottomGroup);
   }
 
   private void setupAspectRatio(final View view) {
@@ -115,7 +113,7 @@ public class DeviceFragment extends Fragment {
     bottomGroup.setVisibility(GONE);
   }
 
-  private void setupDevice(Device device) {
+  private void display(Device device) {
     deviceNameTv.setText(device.getName());
     screenResolutionTv.setText(device.getScreenResolution());
     densityTv.setText(format(getDefault(), "%ddpi", device.getDensity()));

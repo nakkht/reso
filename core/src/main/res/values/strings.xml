@@ -7,5 +7,7 @@
     <string name="screen_resolution">Screen resolution</string>
     <string name="density">Density</string>
     <string name="aspect_ratio">Aspect ratio</string>
+    <string name="os_information">OS information</string>
+    <string name="os_version">OS version</string>
 
 </resources>
