@@ -3,13 +3,9 @@ package com.neqsoft.reso.info;
 import android.os.Bundle;
 
 import com.neqsoft.reso.R;
-import com.neqsoft.reso.device.Device;
-import com.neqsoft.reso.device.DeviceViewModel;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import static androidx.lifecycle.ViewModelProviders.of;
 
 public class InfoActivity extends AppCompatActivity {
 

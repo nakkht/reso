@@ -119,6 +119,6 @@ public class DeviceFragment extends Fragment {
     deviceNameTv.setText(device.getName());
     screenResolutionTv.setText(device.getScreenResolution());
     densityTv.setText(format(getDefault(), "%ddpi", device.getDensity()));
-    aspectRatioTv.setText(format(getDefault(), "%f", device.getAspectRatio()));
+    aspectRatioTv.setText(device.getAspectRatio());
   }
 }

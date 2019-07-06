@@ -2,13 +2,15 @@ package com.neqsoft.reso.device;
 
 import androidx.annotation.Nullable;
 
+import static java.lang.Float.MAX_VALUE;
+import static java.lang.Math.abs;
 import static java.lang.String.format;
 import static java.util.Locale.getDefault;
 
 public class Device {
 
-  private static String[] aspectRatios = {"9:16", "16:9", "5:9", "3:5", "40:71", "5:8", "1:1", "4:3", "2:3", "5:3", "8:5", "19.5:9", "18:9"};
-  private static float[] aspectRatioValues = {0.5625f, 1.7777f, 0.5555f, 0.6f, 0.5633f, 0.625f, 1f, 1.3333f, 0.6666f, 1.6666f, 1.6f, 2.1666f, 2f};
+  private final static String[] aspectRatios = {"9:16", "16:9", "5:9", "3:5", "40:71", "5:8", "1:1", "4:3", "2:3", "5:3", "8:5", "19.5:9", "18:9"};
+  private final static float[] aspectRatioValues = {0.5625f, 1.7777f, 0.5555f, 0.6f, 0.5633f, 0.625f, 1f, 1.3333f, 0.6666f, 1.6666f, 1.6f, 2.1666f, 2f};
 
   @Nullable
   private String name;
@@ -46,7 +48,16 @@ public class Device {
   }
 
   public String getAspectRatio() {
-    return "";
+    if (aspectRatio == 0.0f) return "-";
+    int lowestDiffPosition = -1;
+    float lowestDiff = MAX_VALUE;
+    for (int x = 0; x < aspectRatioValues.length; x++) {
+      final float diff = abs(aspectRatioValues[x] - 1 / aspectRatio);
+      if (diff >= lowestDiff) continue;
+      lowestDiff = diff;
+      lowestDiffPosition = x;
+    }
+    return aspectRatios[lowestDiffPosition];
   }
 
   public void setAspectRatio(float aspectRatio) {
