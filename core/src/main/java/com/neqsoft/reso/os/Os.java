@@ -8,7 +8,7 @@ import static java.util.Locale.getDefault;
 
 public class Os {
 
-  private static final String TIME_FORMAT = "HH:mm:ss.SSS";
+  private static final String TIME_FORMAT = "dd/MM/yyyy HH:mm";
 
   private int sdkVersion;
   private String version;
