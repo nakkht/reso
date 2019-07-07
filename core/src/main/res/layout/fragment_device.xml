@@ -9,24 +9,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_small">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/arrowIv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
             android:src="@drawable/ic_chevron_down"
             android:tint="?attr/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@id/titleTv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/titleTv"/>
 
         <TextView
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/padding_medium"
-            android:paddingStart="@dimen/padding_medium"
+            android:padding="@dimen/padding_medium"
             app:layout_constraintStart_toEndOf="@id/arrowIv"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/hardware_information"/>
@@ -36,7 +36,6 @@
             layout="@layout/info_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@id/titleTv"/>
 
         <include
@@ -44,7 +43,6 @@
             layout="@layout/info_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@id/deviceNameLayout"/>
 
         <include
@@ -52,7 +50,6 @@
             layout="@layout/info_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@id/screenResolutionLayout"/>
 
         <include
@@ -60,7 +57,6 @@
             layout="@layout/info_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
             app:layout_constraintTop_toBottomOf="@id/densityLayout"/>
 
         <androidx.constraintlayout.widget.Group
