@@ -14,5 +14,8 @@
     <string name="architecture">Architecture</string>
     <string name="kernel">Kernel</string>
     <string name="kernel_version">Kernel version</string>
+    <string name="bootloader_version">Bootloader version</string>
+    <string name="safe_mode">Safe mode</string>
+    <string name="boot_time">Boot time</string>
 
 </resources>

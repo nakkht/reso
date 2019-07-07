@@ -15,3 +15,8 @@ All notable changes to reso project will be documented in this file.
   - OS version number
   - SDK version
   - Code name 
+  - Kernel version
+  - Kernel name
+  - Architecture
+  - Bootloader version
+  - Safe mode

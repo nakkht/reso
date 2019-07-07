@@ -19,12 +19,14 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static androidx.lifecycle.ViewModelProviders.of;
 import static java.lang.String.format;
+import static java.lang.String.valueOf;
 import static java.util.Locale.getDefault;
 
 public class OsFragment extends Fragment {
 
   private OsViewModel osViewModel;
-  private TextView osVersionTv, sdkVersionTv, codeNameTv, architectureTv, kernelNameTv, kernelVersionTv;
+  private TextView osVersionTv, sdkVersionTv, codeNameTv, architectureTv, kernelNameTv, kernelVersionTv,
+      bootloaderVersionTv, safeModeTv, bootTimeTv;
   private AppCompatImageView arrowIv;
   private boolean isExpanded = false;
   private Group bottomGroup;
@@ -32,7 +34,8 @@ public class OsFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    osViewModel = of(this).get(OsViewModel.class);
+    if (getActivity() != null)
+      osViewModel = of(this, new OsViewModel.Factory(getActivity().getApplicationContext())).get(OsViewModel.class);
   }
 
   @Nullable
@@ -56,6 +59,23 @@ public class OsFragment extends Fragment {
     setupKernelVersion(view);
     setupKernelName(view);
     setupArchitecture(view);
+    setupBooloader(view);
+    setupSafeMode(view);
+    setupBootTime(view);
+  }
+
+  private void setupBootTime(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.bootTimeLayout);
+    bootTimeTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.boot_time);
+  }
+
+  private void setupSafeMode(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.safeModeLayout);
+    safeModeTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.safe_mode);
   }
 
   private void setupKernelVersion(final View view) {
@@ -100,6 +120,13 @@ public class OsFragment extends Fragment {
     titleTv.setText(R.string.sdk_version);
   }
 
+  private void setupBooloader(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.bootloaderVersionLayout);
+    bootloaderVersionTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.bootloader_version);
+  }
+
   private void display(final Os os) {
     osVersionTv.setText(os.getVersion());
     sdkVersionTv.setText(format(getDefault(), "%d", os.getSdkVersion()));
@@ -107,6 +134,9 @@ public class OsFragment extends Fragment {
     kernelNameTv.setText(os.getKernelName());
     kernelVersionTv.setText(os.getKernelVersion());
     architectureTv.setText(os.getArchitecture());
+    bootloaderVersionTv.setText(os.getBootloaderVersion());
+    safeModeTv.setText(valueOf(os.isSafeMode()));
+    bootTimeTv.setText(os.getBootTimeFormatted());
   }
 
   private void changeState() {
