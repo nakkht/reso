@@ -27,7 +27,7 @@ public class DeviceFragment extends Fragment {
 
   private TextView deviceNameTv, screenResolutionTv, densityTv, aspectRatioTv;
   private AppCompatImageView arrowIv;
-  private boolean isExpanded = false;
+  private boolean isExpanded = true;
   private Group bottomGroup;
   private Display display;
   private DeviceViewModel deviceViewModel;
@@ -35,9 +35,8 @@ public class DeviceFragment extends Fragment {
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
-    if (getActivity() != null) {
+    if (getActivity() != null)
       display = getActivity().getWindowManager().getDefaultDisplay();
-    }
   }
 
   @Override
@@ -52,6 +51,7 @@ public class DeviceFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_device, container, false);
     bind(view);
     deviceViewModel.getDeviceInfo(display).observe(this, this::display);
+    syncState();
     return view;
   }
 
@@ -103,13 +103,18 @@ public class DeviceFragment extends Fragment {
     isExpanded = !isExpanded;
   }
 
+  private void syncState() {
+    if (isExpanded) expand();
+    else collapse();
+  }
+
   private void expand() {
-    arrowIv.animate().rotation(180);
+    arrowIv.setRotation(180);
     bottomGroup.setVisibility(VISIBLE);
   }
 
   private void collapse() {
-    arrowIv.animate().rotation(0);
+    arrowIv.setRotation(0);
     bottomGroup.setVisibility(GONE);
   }
 

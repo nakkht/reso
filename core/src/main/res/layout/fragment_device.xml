@@ -71,11 +71,9 @@
             android:id="@+id/bottomGroup"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="gone"
             app:constraint_referenced_ids="deviceNameLayout, screenResolutionLayout, densityLayout, aspectRatioLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@id/deviceNameLayout"
-            tools:visibility="visible"/>
+            app:layout_constraintTop_toTopOf="@id/deviceNameLayout"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,7 +28,7 @@ public class OsFragment extends Fragment {
   private TextView osVersionTv, sdkVersionTv, codeNameTv, architectureTv, kernelNameTv, kernelVersionTv,
       bootloaderVersionTv, safeModeTv, bootTimeTv;
   private AppCompatImageView arrowIv;
-  private boolean isExpanded = false;
+  private boolean isExpanded = true;
   private Group bottomGroup;
 
   @Override
@@ -44,6 +44,7 @@ public class OsFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_os, container, false);
     bind(view);
     osViewModel.getOsData().observe(this, this::display);
+    syncState();
     return view;
   }
 
@@ -139,6 +140,11 @@ public class OsFragment extends Fragment {
     bootTimeTv.setText(os.getBootTimeFormatted());
   }
 
+  private void syncState() {
+    if (isExpanded) expand();
+    else collapse();
+  }
+
   private void changeState() {
     if (isExpanded)
       collapse();
@@ -148,12 +154,12 @@ public class OsFragment extends Fragment {
   }
 
   private void expand() {
-    arrowIv.animate().rotation(180);
+    arrowIv.setRotation(180);
     bottomGroup.setVisibility(VISIBLE);
   }
 
   private void collapse() {
-    arrowIv.animate().rotation(0);
+    arrowIv.setRotation(0);
     bottomGroup.setVisibility(GONE);
   }
 }

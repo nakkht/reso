@@ -106,11 +106,9 @@
             android:id="@+id/bottomGroup"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="gone"
             app:constraint_referenced_ids="osVersionLayout, sdkVersionLayout, codeNameLayout, kernelVersionLayout, kernelNameLayout, architectureLayout, bootloaderVersionLayout, safeModeLayout, bootTimeLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@id/osVersionLayout"
-            tools:visibility="visible"/>
+            app:layout_constraintTop_toTopOf="@id/osVersionLayout"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

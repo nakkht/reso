@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_os_info">Show os information</string>
+    <string name="action_device_info">Show device information</string>
+
+</resources>

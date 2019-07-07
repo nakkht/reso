@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/deviceItem"
+        android:icon="@drawable/ic_smartphone"
+        android:title="@string/action_device_info"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/osItem"
+        android:icon="@drawable/ic_android"
+        android:title="@string/action_os_info"
+        app:showAsAction="ifRoom"/>
+
+</menu>
