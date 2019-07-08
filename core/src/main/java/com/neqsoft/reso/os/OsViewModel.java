@@ -40,6 +40,7 @@ public class OsViewModel extends ViewModel {
       os.setBootloaderVersion(Build.BOOTLOADER);
       os.setSafeMode(applicationContext.getPackageManager().isSafeMode());
       os.setBootTime(calculateBootTime());
+      os.setUptime(elapsedRealtime());
       osData.postValue(os);
     });
     return osData;

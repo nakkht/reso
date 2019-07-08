@@ -94,6 +94,13 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/safeModeLayout"/>
 
+        <include
+            android:id="@+id/uptimeLayout"
+            layout="@layout/info_item_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/bootTimeLayout"/>
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/topGroup"
             android:layout_width="match_parent"
@@ -106,7 +113,8 @@
             android:id="@+id/bottomGroup"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:constraint_referenced_ids="osVersionLayout, sdkVersionLayout, codeNameLayout, kernelVersionLayout, kernelNameLayout, architectureLayout, bootloaderVersionLayout, safeModeLayout, bootTimeLayout"
+            app:constraint_referenced_ids="osVersionLayout, sdkVersionLayout, codeNameLayout, kernelVersionLayout, kernelNameLayout, architectureLayout, bootloaderVersionLayout, safeModeLayout,
+            bootTimeLayout, uptimeLayout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/osVersionLayout"/>
 

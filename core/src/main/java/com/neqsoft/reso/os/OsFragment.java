@@ -26,7 +26,7 @@ public class OsFragment extends Fragment {
 
   private OsViewModel osViewModel;
   private TextView osVersionTv, sdkVersionTv, codeNameTv, architectureTv, kernelNameTv, kernelVersionTv,
-      bootloaderVersionTv, safeModeTv, bootTimeTv;
+      bootloaderVersionTv, safeModeTv, bootTimeTv, uptimeTv;
   private AppCompatImageView arrowIv;
   private boolean isExpanded = true;
   private Group bottomGroup;
@@ -63,6 +63,14 @@ public class OsFragment extends Fragment {
     setupBooloader(view);
     setupSafeMode(view);
     setupBootTime(view);
+    setupUpTime(view);
+  }
+
+  private void setupUpTime(final View view) {
+    ConstraintLayout layout = view.findViewById(R.id.uptimeLayout);
+    uptimeTv = layout.findViewById(R.id.infoTv);
+    TextView titleTv = layout.findViewById(R.id.titleTv);
+    titleTv.setText(R.string.uptime);
   }
 
   private void setupBootTime(final View view) {
@@ -137,7 +145,21 @@ public class OsFragment extends Fragment {
     architectureTv.setText(os.getArchitecture());
     bootloaderVersionTv.setText(os.getBootloaderVersion());
     safeModeTv.setText(valueOf(os.isSafeMode()));
-    bootTimeTv.setText(os.getBootTimeFormatted());
+    bootTimeTv.setText(os.getFormattedBootTime());
+    displayUptime(os);
+  }
+
+  private void displayUptime(final Os os) {
+    int days = os.getUptimeDays();
+    int hours = os.getUptimeHours();
+    int minutes = os.getUptimeMinutes();
+    int seconds = os.getUptimeSeconds();
+    String dayString = getResources().getQuantityString(R.plurals.day, days);
+    String hourString = getResources().getQuantityString(R.plurals.hour, hours);
+    String minuteString = getResources().getQuantityString(R.plurals.minute, minutes);
+    String secondString = getResources().getQuantityString(R.plurals.seconds, seconds);
+    uptimeTv.setText(getString(R.string.placeholder_time, days, dayString, hours, hourString,
+                               minutes, minuteString, seconds, secondString));
   }
 
   private void syncState() {

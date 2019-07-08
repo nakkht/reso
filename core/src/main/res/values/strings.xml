@@ -17,5 +17,6 @@
     <string name="bootloader_version">Bootloader version</string>
     <string name="safe_mode">Safe mode</string>
     <string name="boot_time">Boot time</string>
+    <string name="uptime">Uptime</string>
 
 </resources>

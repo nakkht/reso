@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="placeholder_time" translatable="false">"%d %s %d %s %d %s %d %s</string>
+
+</resources>

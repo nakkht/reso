@@ -8,7 +8,10 @@ import static java.util.Locale.getDefault;
 
 public class Os {
 
-  private static final String TIME_FORMAT = "dd/MM/yyyy HH:mm";
+  private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
+  private static final int DAY = 24 * 60 * 60 * 1000;
+  private static final int HOUR = 60 * 60 * 1000;
+  private static final int MINUTE = 60 * 60 * 1000;
 
   private int sdkVersion;
   private String version;
@@ -18,14 +21,31 @@ public class Os {
   private String bootloaderVersion;
   private boolean isSafeMode;
   private long bootTimeInMillis;
+  private long uptime;
 
-  public String getBootTimeFormatted() {
-    DateFormat formatter = new SimpleDateFormat(TIME_FORMAT, getDefault());
-    return formatter.format(new Date(bootTimeInMillis));
+  public int getUptimeDays() {
+    return (int) (uptime / DAY);
   }
 
-  public long getBootTime() {
-    return bootTimeInMillis;
+  public int getUptimeHours() {
+    return (int) (uptime / HOUR) % 24;
+  }
+
+  public int getUptimeMinutes() {
+    return (int) (uptime / MINUTE) % 60;
+  }
+
+  public int getUptimeSeconds() {
+    return (int) (uptime / 1000) % 60;
+  }
+
+  public void setUptime(long uptime) {
+    this.uptime = uptime;
+  }
+
+  public String getFormattedBootTime() {
+    DateFormat formatter = new SimpleDateFormat(DATE_TIME_FORMAT, getDefault());
+    return formatter.format(new Date(bootTimeInMillis));
   }
 
   public void setBootTime(long bootTimeInMillis) {
