@@ -36,13 +36,24 @@ public class InfoActivity extends AppCompatActivity {
   private void setupBottomNavigation() {
     BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
     bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
-      if (menuItem.getItemId() == R.id.deviceItem) {
-        displayDeviceView();
-      } else {
-        displayOsView();
+      switch (menuItem.getItemId()) {
+        case R.id.deviceItem:
+          displayDeviceView();
+          return true;
+        case R.id.osItem:
+          displayOsView();
+          return true;
+        case R.id.cpuItem:
+          displayCpuView();
+          return true;
+        default:
+          return false;
       }
-      return true;
     });
+  }
+
+  private void displayCpuView() {
+
   }
 
   private void displayOsView() {

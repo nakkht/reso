@@ -15,4 +15,10 @@
         android:title="@string/action_os_info"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/cpuItem"
+        android:icon="@drawable/ic_cpu"
+        android:title="@string/action_cpu_info"
+        app:showAsAction="ifRoom"/>
+
 </menu>
