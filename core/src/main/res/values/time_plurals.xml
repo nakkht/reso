@@ -20,7 +20,7 @@
     </plurals>
 
     <plurals name="seconds">
-        <item quantity="one">seconds</item>
+        <item quantity="one">second</item>
         <item quantity="many">seconds</item>
         <item quantity="other">seconds</item>
     </plurals>
