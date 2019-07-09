@@ -77,7 +77,7 @@ public class OsFragment extends Fragment {
     ConstraintLayout layout = view.findViewById(R.id.bootTimeLayout);
     bootTimeTv = layout.findViewById(R.id.infoTv);
     TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.boot_time);
+    titleTv.setText(R.string.boot_date_time);
   }
 
   private void setupSafeMode(final View view) {

@@ -20,3 +20,5 @@ All notable changes to reso project will be documented in this file.
   - Architecture
   - Bootloader version
   - Safe mode
+  - Boot date time
+  - Uptime

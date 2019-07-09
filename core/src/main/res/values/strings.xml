@@ -16,7 +16,7 @@
     <string name="kernel_version">Kernel version</string>
     <string name="bootloader_version">Bootloader version</string>
     <string name="safe_mode">Safe mode</string>
-    <string name="boot_time">Boot time</string>
+    <string name="boot_date_time">Boot date time</string>
     <string name="uptime">Uptime</string>
 
 </resources>
