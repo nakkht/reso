@@ -54,6 +54,5 @@ public class DeviceFragment extends Fragment {
 
   private void display(Device device) {
     deviceRecyclerAdapter.submit(device);
-    deviceRecyclerAdapter.notifyDataSetChanged();
   }
 }

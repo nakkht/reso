@@ -8,6 +8,8 @@ import static java.util.Locale.getDefault;
 
 public class Os {
 
+  static final int PROPERTY_COUNT = 10;
+
   private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
   private static final int DAY = 24 * 60 * 60 * 1000;
   private static final int HOUR = 60 * 60 * 1000;

@@ -16,11 +16,11 @@ import static com.neqsoft.reso.device.Device.PROPERTY_COUNT;
 
 class DeviceRecyclerAdapter extends RecyclerView.Adapter {
 
-  @Nullable
-  private Device device;
-
   static final int HEADER_ITEM_TYPE = 0;
   static final int INFO_ITEM_TYPE = 1;
+
+  @Nullable
+  private Device device;
 
   @NonNull
   @Override
@@ -81,7 +81,7 @@ class DeviceRecyclerAdapter extends RecyclerView.Adapter {
 
   @Override
   public int getItemCount() {
-    return PROPERTY_COUNT;
+    return PROPERTY_COUNT + 1;
   }
 
   @Override
@@ -91,5 +91,6 @@ class DeviceRecyclerAdapter extends RecyclerView.Adapter {
 
   public void submit(Device device) {
     this.device = device;
+    notifyDataSetChanged();
   }
 }

@@ -4,32 +4,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.neqsoft.reso.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 import static androidx.lifecycle.ViewModelProviders.of;
-import static java.lang.String.format;
-import static java.lang.String.valueOf;
-import static java.util.Locale.getDefault;
 
 public class OsFragment extends Fragment {
 
   private OsViewModel osViewModel;
-  private TextView osVersionTv, sdkVersionTv, codeNameTv, architectureTv, kernelNameTv, kernelVersionTv,
-      bootloaderVersionTv, safeModeTv, bootTimeTv, uptimeTv;
-  private AppCompatImageView arrowIv;
-  private boolean isExpanded = true;
-  private Group bottomGroup;
+  private OsRecyclerAdapter osRecyclerAdapter;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,144 +33,17 @@ public class OsFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_os, container, false);
     bind(view);
     osViewModel.getOsData().observe(this, this::display);
-    syncState();
     return view;
   }
 
   private void bind(final View view) {
-    TextView titleTv = view.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.os_information);
-    arrowIv = view.findViewById(R.id.arrowIv);
-    view.findViewById(R.id.topGroup).setOnClickListener(v -> changeState());
-    bottomGroup = view.findViewById(R.id.bottomGroup);
-    setupOsVersion(view);
-    setupSdkVersion(view);
-    setupCodeName(view);
-    setupKernelVersion(view);
-    setupKernelName(view);
-    setupArchitecture(view);
-    setupBooloader(view);
-    setupSafeMode(view);
-    setupBootTime(view);
-    setupUpTime(view);
-  }
-
-  private void setupUpTime(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.uptimeLayout);
-    uptimeTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.uptime);
-  }
-
-  private void setupBootTime(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.bootTimeLayout);
-    bootTimeTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.boot_date_time);
-  }
-
-  private void setupSafeMode(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.safeModeLayout);
-    safeModeTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.safe_mode);
-  }
-
-  private void setupKernelVersion(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.kernelVersionLayout);
-    kernelVersionTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.kernel_version);
-  }
-
-  private void setupKernelName(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.kernelNameLayout);
-    kernelNameTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.kernel);
-  }
-
-  private void setupArchitecture(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.architectureLayout);
-    architectureTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.architecture);
-  }
-
-  private void setupCodeName(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.codeNameLayout);
-    codeNameTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.code_name);
-  }
-
-  private void setupOsVersion(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.osVersionLayout);
-    osVersionTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.os_version);
-  }
-
-  private void setupSdkVersion(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.sdkVersionLayout);
-    sdkVersionTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.sdk_version);
-  }
-
-  private void setupBooloader(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.bootloaderVersionLayout);
-    bootloaderVersionTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.bootloader_version);
+    RecyclerView recyclerView = view.findViewById(R.id.osRv);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    osRecyclerAdapter = new OsRecyclerAdapter();
+    recyclerView.setAdapter(osRecyclerAdapter);
   }
 
   private void display(final Os os) {
-    osVersionTv.setText(os.getVersion());
-    sdkVersionTv.setText(format(getDefault(), "%d", os.getSdkVersion()));
-    codeNameTv.setText(os.getOsVersion().getValue());
-    kernelNameTv.setText(os.getKernelName());
-    kernelVersionTv.setText(os.getKernelVersion());
-    architectureTv.setText(os.getArchitecture());
-    bootloaderVersionTv.setText(os.getBootloaderVersion());
-    safeModeTv.setText(valueOf(os.isSafeMode()));
-    bootTimeTv.setText(os.getFormattedBootTime());
-    displayUptime(os);
-  }
-
-  private void displayUptime(final Os os) {
-    int days = os.getUptimeDays();
-    int hours = os.getUptimeHours();
-    int minutes = os.getUptimeMinutes();
-    int seconds = os.getUptimeSeconds();
-    String dayString = getResources().getQuantityString(R.plurals.day, days);
-    String hourString = getResources().getQuantityString(R.plurals.hour, hours);
-    String minuteString = getResources().getQuantityString(R.plurals.minute, minutes);
-    String secondString = getResources().getQuantityString(R.plurals.seconds, seconds);
-    uptimeTv.setText(getString(R.string.placeholder_time, days, dayString, hours, hourString,
-                               minutes, minuteString, seconds, secondString));
-  }
-
-  private void syncState() {
-    if (isExpanded) expand();
-    else collapse();
-  }
-
-  private void changeState() {
-    if (isExpanded)
-      collapse();
-    else
-      expand();
-    isExpanded = !isExpanded;
-  }
-
-  private void expand() {
-    arrowIv.setRotation(180);
-    bottomGroup.setVisibility(VISIBLE);
-  }
-
-  private void collapse() {
-    arrowIv.setRotation(0);
-    bottomGroup.setVisibility(GONE);
+    osRecyclerAdapter.submit(os);
   }
 }
