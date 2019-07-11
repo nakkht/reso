@@ -9,6 +9,8 @@ import static java.util.Locale.getDefault;
 
 public class Device {
 
+  static final int PROPERTY_COUNT = 4;
+
   private final static String[] aspectRatios = {"9:16", "16:9", "5:9", "3:5", "40:71", "5:8", "1:1", "4:3", "2:3", "5:3", "8:5", "19.5:9", "18:9"};
   private final static float[] aspectRatioValues = {0.5625f, 1.7777f, 0.5555f, 0.6f, 0.5633f, 0.625f, 1f, 1.3333f, 0.6666f, 1.6666f, 1.6f, 2.1666f, 2f};
 
@@ -31,7 +33,7 @@ public class Device {
     this.screenWidth = screenWidth;
   }
 
-  public String getScreenResolution() {
+  public String getFormattedScreenResolution() {
     return format(getDefault(), "%dx%d", screenWidth, screenHeight);
   }
 
@@ -39,15 +41,15 @@ public class Device {
     this.screenHeight = screenHeight;
   }
 
-  public int getDensity() {
-    return density;
+  public String getFormattedDensity() {
+    return format(getDefault(), "%ddpi", density);
   }
 
   public void setDensity(int density) {
     this.density = density;
   }
 
-  public String getAspectRatio() {
+  public String getFormattedAspectRatio() {
     if (aspectRatio == 0.0f) return "-";
     int lowestDiffPosition = -1;
     float lowestDiff = MAX_VALUE;

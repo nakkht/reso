@@ -6,31 +6,22 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.neqsoft.reso.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 import static androidx.lifecycle.ViewModelProviders.of;
-import static java.lang.String.format;
-import static java.util.Locale.getDefault;
 
 public class DeviceFragment extends Fragment {
 
-  private TextView deviceNameTv, screenResolutionTv, densityTv, aspectRatioTv;
-  private AppCompatImageView arrowIv;
-  private boolean isExpanded = true;
-  private Group bottomGroup;
   private Display display;
   private DeviceViewModel deviceViewModel;
+  private DeviceRecyclerAdapter deviceRecyclerAdapter;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -51,77 +42,18 @@ public class DeviceFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_device, container, false);
     bind(view);
     deviceViewModel.getDeviceInfo(display).observe(this, this::display);
-    syncState();
     return view;
   }
 
   private void bind(final View view) {
-    TextView titleTv = view.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.hardware_information);
-    bottomGroup = view.findViewById(R.id.bottomGroup);
-    arrowIv = view.findViewById(R.id.arrowIv);
-    view.findViewById(R.id.topGroup).setOnClickListener(v -> changeState());
-    setupDeviceName(view);
-    setupScreenResolution(view);
-    setupDensity(view);
-    setupAspectRatio(view);
-  }
-
-  private void setupAspectRatio(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.aspectRatioLayout);
-    aspectRatioTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.aspect_ratio);
-  }
-
-  private void setupDensity(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.densityLayout);
-    densityTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.density);
-  }
-
-  private void setupScreenResolution(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.screenResolutionLayout);
-    screenResolutionTv = layout.findViewById(R.id.infoTv);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.screen_resolution);
-  }
-
-  private void setupDeviceName(final View view) {
-    ConstraintLayout layout = view.findViewById(R.id.deviceNameLayout);
-    TextView titleTv = layout.findViewById(R.id.titleTv);
-    titleTv.setText(R.string.device_name);
-    deviceNameTv = layout.findViewById(R.id.infoTv);
-  }
-
-  private void changeState() {
-    if (isExpanded)
-      collapse();
-    else
-      expand();
-    isExpanded = !isExpanded;
-  }
-
-  private void syncState() {
-    if (isExpanded) expand();
-    else collapse();
-  }
-
-  private void expand() {
-    arrowIv.setRotation(180);
-    bottomGroup.setVisibility(VISIBLE);
-  }
-
-  private void collapse() {
-    arrowIv.setRotation(0);
-    bottomGroup.setVisibility(GONE);
+    RecyclerView recyclerView = view.findViewById(R.id.deviceRv);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    deviceRecyclerAdapter = new DeviceRecyclerAdapter();
+    recyclerView.setAdapter(deviceRecyclerAdapter);
   }
 
   private void display(Device device) {
-    deviceNameTv.setText(device.getName());
-    screenResolutionTv.setText(device.getScreenResolution());
-    densityTv.setText(format(getDefault(), "%ddpi", device.getDensity()));
-    aspectRatioTv.setText(device.getAspectRatio());
+    deviceRecyclerAdapter.submit(device);
+    deviceRecyclerAdapter.notifyDataSetChanged();
   }
 }
