@@ -34,15 +34,6 @@ public enum OsVersion {
   Q("Q");
 
   private static final SparseArrayCompat<OsVersion> VALUES;
-  private String value;
-
-  OsVersion(final String value) {
-    this.value = value;
-  }
-
-  public String getValue() {
-    return value;
-  }
 
   static {
     SparseArrayCompat<OsVersion> values = new SparseArrayCompat<>();
@@ -54,7 +45,17 @@ public enum OsVersion {
     VALUES = values;
   }
 
+  private String value;
+
+  OsVersion(final String value) {
+    this.value = value;
+  }
+
   public static OsVersion get(int sdkValue) {
     return VALUES.get(sdkValue - 1);
+  }
+
+  public String getValue() {
+    return value;
   }
 }

@@ -1,8 +1,7 @@
-package com.neqsoft.reso.device;
+package com.neqsoft.reso.cpu;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,46 +16,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static androidx.lifecycle.ViewModelProviders.of;
 
-public class DeviceFragment extends Fragment {
+public class CpuInfoFragment extends Fragment {
 
-  private Display display;
   @Nullable
-  private DeviceViewModel deviceViewModel;
+  private CpuInfoRecyclerAdapter cpuInfoRecyclerAdapter;
   @Nullable
-  private DeviceRecyclerAdapter deviceRecyclerAdapter;
+  private CpuInfoViewModel cpuInfoViewModel;
 
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
-    if (getActivity() != null)
-      display = getActivity().getWindowManager().getDefaultDisplay();
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    deviceViewModel = of(this).get(DeviceViewModel.class);
+    cpuInfoViewModel = of(this).get(CpuInfoViewModel.class);
   }
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_device, container, false);
+    View view = inflater.inflate(R.layout.fragment_cpu_info, container, false);
     bind(view);
-    if (deviceViewModel != null)
-      deviceViewModel.getDeviceInfo(display).observe(this, this::display);
+    if (cpuInfoViewModel != null)
+      cpuInfoViewModel.getCpuInfo().observe(this, this::display);
     return view;
   }
 
   private void bind(final View view) {
-    RecyclerView recyclerView = view.findViewById(R.id.deviceRv);
+    RecyclerView recyclerView = view.findViewById(R.id.cpuInfoRv);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    deviceRecyclerAdapter = new DeviceRecyclerAdapter();
-    recyclerView.setAdapter(deviceRecyclerAdapter);
+    recyclerView.setAdapter(cpuInfoRecyclerAdapter);
   }
 
-  private void display(@Nullable Device device) {
-    if (deviceRecyclerAdapter != null)
-      deviceRecyclerAdapter.submit(device);
+  private void display(@Nullable CpuInfo cpuInfo) {
+    cpuInfoRecyclerAdapter.submit(cpuInfo);
   }
 }

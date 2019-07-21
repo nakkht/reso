@@ -17,7 +17,9 @@ import static androidx.lifecycle.ViewModelProviders.of;
 
 public class OsFragment extends Fragment {
 
+  @Nullable
   private OsViewModel osViewModel;
+  @Nullable
   private OsRecyclerAdapter osRecyclerAdapter;
 
   @Override
@@ -32,7 +34,8 @@ public class OsFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_os, container, false);
     bind(view);
-    osViewModel.getOsData().observe(this, this::display);
+    if (osViewModel != null)
+      osViewModel.getOsData().observe(this, this::display);
     return view;
   }
 
@@ -43,7 +46,8 @@ public class OsFragment extends Fragment {
     recyclerView.setAdapter(osRecyclerAdapter);
   }
 
-  private void display(final Os os) {
-    osRecyclerAdapter.submit(os);
+  private void display(@Nullable final Os os) {
+    if (osRecyclerAdapter != null)
+      osRecyclerAdapter.submit(os);
   }
 }

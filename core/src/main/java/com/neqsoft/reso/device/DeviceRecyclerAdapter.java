@@ -89,7 +89,7 @@ class DeviceRecyclerAdapter extends RecyclerView.Adapter {
     return position == 0 ? HEADER_ITEM_TYPE : INFO_ITEM_TYPE;
   }
 
-  public void submit(Device device) {
+  public void submit(@Nullable Device device) {
     this.device = device;
     notifyDataSetChanged();
   }

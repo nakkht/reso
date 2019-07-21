@@ -18,14 +18,13 @@ import static java.lang.String.format;
 import static java.lang.String.valueOf;
 import static java.util.Locale.getDefault;
 
-public class OsRecyclerAdapter extends RecyclerView.Adapter {
+class OsRecyclerAdapter extends RecyclerView.Adapter {
 
   static final int HEADER_ITEM_TYPE = 0;
   static final int INFO_ITEM_TYPE = 1;
 
   @Nullable
   private Os os;
-
 
   @NonNull
   @Override
@@ -163,7 +162,7 @@ public class OsRecyclerAdapter extends RecyclerView.Adapter {
     return position == 0 ? HEADER_ITEM_TYPE : INFO_ITEM_TYPE;
   }
 
-  public void submit(Os os) {
+  public void submit(@Nullable Os os) {
     this.os = os;
     notifyDataSetChanged();
   }

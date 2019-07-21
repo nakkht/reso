@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.neqsoft.reso.R;
+import com.neqsoft.reso.cpu.CpuInfoFragment;
 import com.neqsoft.reso.device.DeviceFragment;
 import com.neqsoft.reso.os.OsFragment;
 
@@ -16,9 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class InfoActivity extends AppCompatActivity {
 
-  @Nullable
-  private Fragment deviceFragment, osFragment;
   private final FragmentManager fragmentManager;
+  @Nullable
+  private Fragment deviceFragment, osFragment, cputFragment;
 
   public InfoActivity() {
     fragmentManager = getSupportFragmentManager();
@@ -53,7 +54,8 @@ public class InfoActivity extends AppCompatActivity {
   }
 
   private void displayCpuView() {
-
+    cputFragment = cputFragment != null ? cputFragment : new CpuInfoFragment();
+    display(cputFragment);
   }
 
   private void displayOsView() {

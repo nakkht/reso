@@ -62,20 +62,20 @@ public class Os {
     isSafeMode = safeMode;
   }
 
-  public void setSdkVersion(int sdkVersion) {
-    this.sdkVersion = sdkVersion;
-  }
-
   public int getSdkVersion() {
     return sdkVersion;
   }
 
-  public void setVersion(final String version) {
-    this.version = version;
+  public void setSdkVersion(int sdkVersion) {
+    this.sdkVersion = sdkVersion;
   }
 
   public String getVersion() {
     return version;
+  }
+
+  public void setVersion(final String version) {
+    this.version = version;
   }
 
   public OsVersion getOsVersion() {
