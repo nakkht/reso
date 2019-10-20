@@ -2,9 +2,9 @@
 All notable changes to reso project will be documented in this file.
 
 
-### v0.1.0
+## v0.1.0 - [unreleased]
 
-#### Added
+Added
 - Displaying hardware information:
   - Device name
   - Screen resolution
