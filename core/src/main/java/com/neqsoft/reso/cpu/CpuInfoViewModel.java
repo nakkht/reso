@@ -1,11 +1,12 @@
 package com.neqsoft.reso.cpu;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import static java.util.concurrent.Executors.newCachedThreadPool;
 
 public class CpuInfoViewModel extends ViewModel {
 
@@ -13,12 +14,13 @@ public class CpuInfoViewModel extends ViewModel {
   private final MutableLiveData<CpuInfo> cpuInfo;
 
   public CpuInfoViewModel() {
-    backgroundExecutor = Executors.newCachedThreadPool();
+    backgroundExecutor = newCachedThreadPool();
     cpuInfo = new MutableLiveData<>();
   }
 
   public LiveData<CpuInfo> getCpuInfo() {
     backgroundExecutor.execute(() -> {
+
     });
     return cpuInfo;
   }

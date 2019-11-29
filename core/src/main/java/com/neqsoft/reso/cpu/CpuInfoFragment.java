@@ -39,8 +39,7 @@ public class CpuInfoFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_cpu_info, container, false);
     bind(view);
-    if (cpuInfoViewModel != null)
-      cpuInfoViewModel.getCpuInfo().observe(this, this::display);
+    if (cpuInfoViewModel != null) cpuInfoViewModel.getCpuInfo().observe(this, this::display);
     return view;
   }
 
