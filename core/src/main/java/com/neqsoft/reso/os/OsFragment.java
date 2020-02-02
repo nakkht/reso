@@ -10,10 +10,9 @@ import com.neqsoft.reso.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static androidx.lifecycle.ViewModelProviders.of;
 
 public class OsFragment extends Fragment {
 
@@ -26,7 +25,7 @@ public class OsFragment extends Fragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     if (getActivity() != null)
-      osViewModel = of(this, new OsViewModel.Factory(getActivity().getApplicationContext())).get(OsViewModel.class);
+      osViewModel = new ViewModelProvider(this, new OsViewModel.Factory(getActivity().getApplicationContext())).get(OsViewModel.class);
   }
 
   @Nullable

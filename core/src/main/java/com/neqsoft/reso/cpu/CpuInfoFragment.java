@@ -11,10 +11,9 @@ import com.neqsoft.reso.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static androidx.lifecycle.ViewModelProviders.of;
 
 public class CpuInfoFragment extends Fragment {
 
@@ -31,7 +30,7 @@ public class CpuInfoFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    cpuInfoViewModel = of(this).get(CpuInfoViewModel.class);
+    cpuInfoViewModel = new ViewModelProvider(this).get(CpuInfoViewModel.class);
   }
 
   @Nullable
@@ -50,6 +49,7 @@ public class CpuInfoFragment extends Fragment {
   }
 
   private void display(@Nullable CpuInfo cpuInfo) {
+    if (cpuInfoRecyclerAdapter == null) return;
     cpuInfoRecyclerAdapter.submit(cpuInfo);
   }
 }

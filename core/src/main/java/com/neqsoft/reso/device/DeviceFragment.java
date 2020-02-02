@@ -12,10 +12,9 @@ import com.neqsoft.reso.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static androidx.lifecycle.ViewModelProviders.of;
 
 public class DeviceFragment extends Fragment {
 
@@ -35,7 +34,7 @@ public class DeviceFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    deviceViewModel = of(this).get(DeviceViewModel.class);
+    deviceViewModel = new ViewModelProvider(this).get(DeviceViewModel.class);
   }
 
   @Nullable
