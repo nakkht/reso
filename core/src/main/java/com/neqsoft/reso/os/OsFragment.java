@@ -34,7 +34,7 @@ public class OsFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_os, container, false);
     bind(view);
     if (osViewModel != null)
-      osViewModel.getOsData().observe(this, this::display);
+      osViewModel.getOsData().observe(getViewLifecycleOwner(), this::display);
     return view;
   }
 

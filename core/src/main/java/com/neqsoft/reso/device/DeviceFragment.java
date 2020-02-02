@@ -43,7 +43,7 @@ public class DeviceFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_device, container, false);
     bind(view);
     if (deviceViewModel != null)
-      deviceViewModel.getDeviceInfo(display).observe(this, this::display);
+      deviceViewModel.getDeviceInfo(display).observe(getViewLifecycleOwner(), this::display);
     return view;
   }
 
