@@ -1,5 +1,7 @@
 package com.neqsoft.reso.cpu;
 
+import java.util.List;
+
 import androidx.annotation.Nullable;
 
 public class CpuInfo {
@@ -18,5 +20,8 @@ public class CpuInfo {
 
   private Endianess endianess;
 
+  private long frequency;
 
+  @Nullable
+  private List<Process> processes;
 }
