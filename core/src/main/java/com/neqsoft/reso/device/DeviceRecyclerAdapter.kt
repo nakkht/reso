@@ -32,27 +32,27 @@ class DeviceRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private fun setupAspectRatio(holder: InfoViewHolder) {
-        holder.setTitle(holder.itemView.context.getString(R.string.aspect_ratio))
-        holder.setInfo(device?.formattedAspectRatio ?: "")
+        holder.titleTv.text = holder.itemView.context.getString(R.string.aspect_ratio)
+        holder.infoTv.text = device?.formattedAspectRatio ?: ""
     }
 
     private fun setupHeader(holder: HeaderViewHolder) {
-        holder.setTitle(holder.itemView.context.getString(R.string.hardware_information))
+        holder.titleTv.text = holder.itemView.context.getString(R.string.hardware_information)
     }
 
     private fun setupDensity(holder: InfoViewHolder) {
-        holder.setTitle(holder.itemView.context.getString(R.string.density))
-        holder.setInfo(device?.formattedDensity ?: "")
+        holder.titleTv.text = holder.itemView.context.getString(R.string.density)
+        holder.infoTv.text = device?.formattedDensity ?: ""
     }
 
     private fun setupResolution(holder: InfoViewHolder) {
-        holder.setTitle(holder.itemView.context.getString(R.string.screen_resolution))
-        holder.setInfo(device?.formattedScreenResolution ?: "")
+        holder.titleTv.text = holder.itemView.context.getString(R.string.screen_resolution)
+        holder.infoTv.text = device?.formattedScreenResolution ?: ""
     }
 
     private fun setupDeviceName(holder: InfoViewHolder) {
-        holder.setTitle(holder.itemView.context.getString(R.string.device_name))
-        holder.setInfo(device?.name ?: "")
+        holder.titleTv.text = holder.itemView.context.getString(R.string.device_name)
+        holder.infoTv.text = device?.name ?: ""
     }
 
     override fun getItemCount(): Int {
