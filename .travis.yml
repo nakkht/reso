@@ -31,6 +31,6 @@ android:
 
 jobs:
   include:
-    - stage: build
+    - stage: Build and Test
       script:
-        - ./gradlew clean build
+        - ./gradlew build
