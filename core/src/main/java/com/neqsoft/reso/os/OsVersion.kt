@@ -31,7 +31,9 @@ enum class OsVersion(val value: String) {
     Oreo("Oreo"),
     O_MR1("Oreo"),
     Pie("Pie"),
-    Q("Q");
+    Q("Q"),
+    R("R"),
+    S("S");
 
     companion object {
 
