@@ -1,5 +1,5 @@
 language: android
-jdk: openjdk11
+jdk: openjdk8
 os: linux
 dist: xenial
 
@@ -27,6 +27,10 @@ android:
     - android-sdk-license-.+
     - google-gdk-license-.+
 
+before_install:
+  - yes | sdkmanager "platforms;android-31"
+  - yes | sdkmanager "build-tools;30.0.3"
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -38,6 +42,10 @@ cache:
     - $HOME/.android/build-cache
 
 before_script:
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
+  - export JAVA_HOME=$HOME/openjdk11
+  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 --target $JAVA_HOME
   - chmod +x gradlew
 
 jobs:
