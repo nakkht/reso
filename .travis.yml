@@ -31,10 +31,6 @@ before_install:
   - jdk_switcher use openjdk8
   - yes | sdkmanager "platforms;android-31"
   - yes | sdkmanager "build-tools;30.0.3"
-  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
-  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
-  - export JAVA_HOME=$HOME/openjdk11
-  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 --target $JAVA_HOME
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -47,6 +43,10 @@ cache:
     - $HOME/.android/build-cache
 
 before_script:
+  - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
+  - export JAVA_HOME=$HOME/openjdk11
+  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 --target $JAVA_HOME
   - chmod +x gradlew
 
 jobs:
