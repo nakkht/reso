@@ -18,7 +18,7 @@ android:
     - tools
     - platform-tools
     - build-tools-$ANDROID_BUILD_TOOLS
-    - android-$ANDROID_API
+    - android-32
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-19
@@ -28,7 +28,6 @@ android:
     - google-gdk-license-.+
 
 before_install:
-  - yes | sdkmanager "platforms;android-31"
   - yes | sdkmanager "build-tools;30.0.3"
 
 before_cache:
