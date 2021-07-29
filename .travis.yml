@@ -10,7 +10,7 @@ branches:
 
 env:
   global:
-    - ANDROID_API=30
+    - ANDROID_API=31
     - ANDROID_BUILD_TOOLS=30.0.3
 
 android:
@@ -28,7 +28,8 @@ android:
     - google-gdk-license-.+
 
 before_install:
-  - yes | sdkmanager "platforms;android-30"
+  - touch $HOME/.android/repositories.cfg
+  - yes | sdkmanager "platforms;android-31"
   - yes | sdkmanager "build-tools;30.0.3"
 
 before_cache:
