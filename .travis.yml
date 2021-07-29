@@ -1,5 +1,5 @@
 language: android
-jdk: openjdk11
+jdk: openjdk8
 os: linux
 dist: trusty
 
@@ -28,10 +28,8 @@ android:
     - google-gdk-license-.+
 
 before_install:
-  - jdk_switcher use openjdk8
   - yes | sdkmanager "platforms;android-31"
   - yes | sdkmanager "build-tools;30.0.3"
-  - jdk_switcher use openjdk11
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -44,6 +42,7 @@ cache:
     - $HOME/.android/build-cache
 
 before_script:
+  - jdk_switcher use openjdk11
   - chmod +x gradlew
 
 jobs:
