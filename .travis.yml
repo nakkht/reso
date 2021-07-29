@@ -1,5 +1,5 @@
 language: android
-jdk: openjdk8
+jdk: openjdk11
 os: linux
 dist: trusty
 
@@ -42,7 +42,7 @@ cache:
     - $HOME/.android/build-cache
 
 before_script:
-  - jdk_switcher use openjdk11
+  - jdk_switcher use oraclejdk11
   - chmod +x gradlew
 
 jobs:
