@@ -10,7 +10,7 @@ Icon sources:
 https://www.flaticon.com/authors/darius-dan
 
 ## License
-This repository is under the **Apache v2.0** license. [Find it here](https://github.com/neqsoft/logr/master/LICENSE).
+This repository is under the **Apache v2.0** license. [Find it here](https://github.com/neqsoft/reso/blob/main/LICENSE).
 
     Copyright 2021 neqsoft
 
