@@ -1,0 +1,27 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  LC_CTYPE: en_US.UTF-8
+  LANG: en_US.UTF-8
+
+jobs:
+  build-&-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache build
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle
+      - name: Assemble Release
+        run: ./gradlew build
