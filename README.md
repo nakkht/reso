@@ -1,5 +1,5 @@
 # reso
-[![Build Status](https://travis-ci.com/neqsoft/reso.svg?branch=develop)](https://travis-ci.com/neqsoft/reso)
+[![build](https://github.com/neqsoft/reso/actions/workflows/build.yml/badge.svg)](https://github.com/neqsoft/reso/actions/workflows/build.yml)
 
 Android application for monitoring and providing all information related to the device.
 
